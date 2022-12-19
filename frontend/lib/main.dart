@@ -11,6 +11,7 @@
 
 // I hope this helps! Let me know if you have any questions or need further assistance.
 import 'package:flutter/material.dart';
+import 'package:frontend/Connexion.dart';
 import 'package:frontend/Pages/Accueil.dart';
 import 'package:frontend/Pages/Regions.dart';
 import 'package:http/http.dart' as http;
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Connexion(),
       routes: {
+        '/accueil': (context) => HomePage(),
         '/region-details': (context) => RegionDetailsPage(),
       },
     );

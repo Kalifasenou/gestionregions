@@ -158,6 +158,7 @@ class Region {
   final String culture;
   final int area;
   final int population;
+  final Image image;
 
   Region({
     required this.name,
@@ -165,6 +166,7 @@ class Region {
     required this.culture,
     required this.area,
     required this.population,
+    required this.image,
   });
 }
 
@@ -175,33 +177,6 @@ final List<Region> regions = [
     culture: 'Description de la culture de la région 1',
     area: 1000,
     population: 100000,
-  ),
-  Region(
-    name: 'Région 2',
-    geography: 'Description de la situation géographique de la région 2',
-    culture: 'Description de la culture de la région 2',
-    area: 2000,
-    population: 200000,
-  ),
-  Region(
-    name: 'Région 3',
-    geography: 'Description de la situation géographique de la région 3',
-    culture: 'Description de la culture de la région 3',
-    area: 3000,
-    population: 300000,
-  ),
-  Region(
-    name: 'Région 4',
-    geography: 'Description de la situation géographique de la région 4',
-    culture: 'Description de la culture de la région 4',
-    area: 4000,
-    population: 400000,
-  ),
-  Region(
-    name: 'Région 5',
-    geography: 'Description de la situation géographique de la région 5',
-    culture: 'Description de la culture de la région 5',
-    area: 5000,
-    population: 500000,
+    image: Image.asset('images/rectangle.png'),
   ),
 ];
