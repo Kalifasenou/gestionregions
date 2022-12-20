@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,6 +26,61 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(region.name),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              // Show a confirmation dialog to the user
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Confirmer la suppression'),
+                    content: const Text(
+                        'Voulez-vous vraiment supprimer cette région?'),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        child: const Text('Oui'),
+                        onPressed: () => 'Supprimer avec succés !',
+                        // onPressed: () {
+                        //   // Send a DELETE request to the server to delete the region
+                        //   http.delete('https://my-server.com/regions/${region.id}').then(
+                        //     (response) {
+                        //       if (response.statusCode == 200) {
+                        //         // Region was successfully deleted
+                        //         Navigator.of(context).pop();
+                        //         Navigator.of(context).pop();
+                        //       } else {
+                        //         // An error occurred, show an error message to the user
+                        //         _scaffoldKey.currentState.showSnackBar(const SnackBar(
+                        //           content: Text('Erreur lors de la suppression de la région'),
+                        //         ));
+                        //       }
+                        //     },
+                        //   );
+                        // },
+                      ),
+                      ElevatedButton(
+                        child: const Text('Non'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.update),
+            onPressed: () {
+              // Navigate to the update page
+              Navigator.of(context)
+                  .pushNamed('/update-region', arguments: region);
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -33,7 +90,7 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text('Situation géographique'),
-              Text(region.geography),
+              Text(region.geographie),
               const SizedBox(height: 8.0),
               const Text('Description culturelle'),
               Text(region.culture),
@@ -108,13 +165,29 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
                   //           content: Text('Commentaire envoyé avec succès'),
                   //         ));
                   //       } else {
-                  //         _scaffoldKey.currentState.showSnackBar(
-                  //           const SnackBar(
-                  //             content: Text(
-                  //                 'Erreur lors de l\'envoi du commentaire'),
-                  //           ),
+                  //         showDialog(
+                  //           context: context,
+                  //           builder:
+                  //             (BuildContext context) {
+                  //             return AlertDialog(
+                  //               title: const Text('Erreur'),
+                  //               content: Text(
+                  //                   'Une erreur s\'est produite lors de l\'envoi du commentaire'),
+                  //               actions: <Widget>[
+                  //                 ElevatedButton(
+                  //                   child: const Text('OK'),
+                  //                   onPressed: () {
+                  //                     Navigator.of(context).pop();
+                  //                   },
+                  //                 ),
+                  //               ],
+                  //             );
+                  //           },
                   //         );
                   //       }
+                  //     },
+                  //   );
+                  // }
                 },
               ),
             ],
@@ -125,36 +198,9 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
   }
 }
 
-// RaisedButton(
-//   child: const Text('Envoyer'),
-//   onPressed: () {
-//     if (_formKey.currentState!.validate()) {
-//       _formKey.currentState!.save();
-
-//       // Envoi du commentaire au serveur web
-//       http.post('https://mon-serveur.com/comment', body: {
-//         'email': _email,
-//         'pseudo': _pseudo,
-//         'comment': _comment,
-//       }).then((response) {
-//         if (response.statusCode == 200) {
-//           _scaffoldKey.currentState.showSnackBar(const SnackBar(
-//             content: Text('Commentaire envoyé avec succès'),
-//           ));
-//         } else {
-//           _scaffoldKey.currentState.showSnackBar(const SnackBar(
-//             content:
-//                 Text('Erreur lors de l\'envoi du commentaire'),
-//           ));
-//         }
-//       });
-//     }
-//   },
-// ),
-
 class Region {
   late final String name;
-  final String geography;
+  final String geographie;
   final String culture;
   final int area;
   final int population;
@@ -162,7 +208,7 @@ class Region {
 
   Region({
     required this.name,
-    required this.geography,
+    required this.geographie,
     required this.culture,
     required this.area,
     required this.population,
@@ -173,7 +219,7 @@ class Region {
 final List<Region> regions = [
   Region(
     name: 'Région 1',
-    geography: 'Description de la situation géographique de la région 1',
+    geographie: 'Description de la situation géographique de la région 1',
     culture: 'Description de la culture de la région 1',
     area: 1000,
     population: 100000,

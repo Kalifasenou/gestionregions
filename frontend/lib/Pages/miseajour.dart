@@ -47,7 +47,7 @@ class _UpdateRegionPageState extends State<UpdateRegionPage> {
                 onSaved: (value) => _name = value!,
               ),
               TextFormField(
-                initialValue: region.geography,
+                initialValue: region.geographie,
                 decoration:
                     const InputDecoration(labelText: 'Situation géographique'),
                 validator: (value) {

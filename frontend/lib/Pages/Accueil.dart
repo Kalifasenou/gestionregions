@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
         area: area,
         population: population,
         culture: 'culture',
-        geography: '1254845',
+        geographie: '1254845',
         image: Image.asset('images/rectangle.png'),
       ),
     );
