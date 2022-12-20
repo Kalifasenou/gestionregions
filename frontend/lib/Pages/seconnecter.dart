@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               AnimatedTextKit(
                 animatedTexts: [
-                  TypewriterAnimatedText('Welcome!',
+                  TypewriterAnimatedText('Bienvenu!',
                       textStyle: const TextStyle(
                         color: Colors.red,
                         fontSize: 30,
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                 ],
                 onTap: () {
-                  debugPrint("Welcome back!");
+                  debugPrint("Bon retour!");
                 },
                 isRepeatingAnimation: true,
                 totalRepeatCount: 2,
@@ -51,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextFormField(
                       decoration: const InputDecoration(
                         icon: Icon(Icons.email),
-                        hintText: 'Enter Your Username/Email',
-                        labelText: 'Email or Username',
+                        hintText: 'Entrée votre Pseudo',
+                        // labelText: 'Email or Username',
                       ),
                       onChanged: (value) {
                         setState(() {});
@@ -62,8 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       obscureText: true,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.lock),
-                        hintText: 'Enter Your Password',
-                        labelText: 'Password',
+                        hintText: 'Entrée votre mot de passe',
+                        // labelText: 'Password',
                       ),
                       onChanged: (value) {
                         setState(() {});
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Navigator.pushNamed(context);
                       },
                       child: const Text(
-                        'Forgot Password?',
+                        'Mot de passe oublié?',
                       ),
                     ),
                     TextButton.icon(
@@ -86,28 +86,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         alignment: Alignment.center,
                         width: 150,
                         height: 35,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                         child: const Text(
-                          'Sign In',
+                          'S\'inscrire',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Don\'t have an account?'),
+                        const Text('Pas de compte ?'),
                         TextButton(
                           onPressed: (() {
                             // Navigator.pushNamed(context, MyRoutes.signUp, );
                           }),
                           child: const Text(
-                            'Sign Up',
+                            'Se connecter',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -115,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                   ],
                 ),

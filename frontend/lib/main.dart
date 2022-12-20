@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Connexion(),
       routes: {
-        '/accueil': (context) => HomePage(),
-        '/region-details': (context) => RegionDetailsPage(),
+        '/accueil': (context) => const HomePage(),
+        '/region-details': (context) => const RegionDetailsPage(),
       },
     );
   }
