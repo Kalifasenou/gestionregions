@@ -70,7 +70,7 @@ class _InscriptionState extends State<Inscription> {
           //   style: RoundedRectangleBorder(
           //     borderRadius: BorderRadius.circular(8),
           //   ),
-          onPressed: () => const HomePage(),
+          onPressed: () => Connexion(),
           // padding: const EdgeInsets.all(12),
           // style: Colors.lightBlueAccent,
           child:

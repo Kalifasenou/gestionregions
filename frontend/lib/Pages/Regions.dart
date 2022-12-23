@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RegionDetailsPage extends StatefulWidget {
-  const RegionDetailsPage({super.key});
+  const RegionDetailsPage({Key? key});
 
   @override
   _RegionDetailsPageState createState() => _RegionDetailsPageState();
@@ -14,9 +14,9 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  late String _email;
-  late String _pseudo;
-  late String _comment;
+  String _email;
+  String _pseudo;
+  String _comment;
 
   @override
   Widget build(BuildContext context) {
@@ -41,24 +41,29 @@ class _RegionDetailsPageState extends State<RegionDetailsPage> {
                     actions: <Widget>[
                       ElevatedButton(
                         child: const Text('Oui'),
-                        onPressed: () => 'Supprimer avec succés !',
-                        // onPressed: () {
-                        //   // Send a DELETE request to the server to delete the region
-                        //   http.delete('https://my-server.com/regions/${region.id}').then(
-                        //     (response) {
-                        //       if (response.statusCode == 200) {
-                        //         // Region was successfully deleted
-                        //         Navigator.of(context).pop();
-                        //         Navigator.of(context).pop();
-                        //       } else {
-                        //         // An error occurred, show an error message to the user
-                        //         _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                        //           content: Text('Erreur lors de la suppression de la région'),
-                        //         ));
-                        //       }
-                        //     },
-                        //   );
-                        // },
+                        // onPressed: () => 'Supprimer avec succés !',
+                        onPressed: () {
+                          // Send a DELETE request to the server to delete the region
+                          http
+                              .delete('localhost:8080/api/regions/${region.id}')
+                              .then(
+                            (response) {
+                              if (response.statusCode == 200) {
+                                // Region was successfully deleted
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                              } else {
+                                // An error occurred, show an error message to the user
+                                _scaffoldKey.currentState.showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        'Erreur lors de la suppression de la région'),
+                                  ),
+                                );
+                              }
+                            },
+                          );
+                        },
                       ),
                       ElevatedButton(
                         child: const Text('Non'),
